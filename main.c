@@ -84,9 +84,39 @@ case 2:
     }
     break;
 
-            case 3:
-                printf("Rechercher un etudiant\n");
-                break;
+            
+case 3: {
+    int idRecherche;
+    int trouve = 0;
+
+    printf("\n===== RECHERCHER UN ETUDIANT =====\n");
+    printf("Entrez l'ID de l'etudiant : ");
+
+    if (scanf("%d", &idRecherche) != 1) {
+        printf("ID invalide.\n");
+        return 1;
+    }
+
+    for (int i = 0; i < nombreEtudiants; i++) {
+        if (etudiants[i].id == idRecherche) {
+            printf("\nEtudiant trouve !\n");
+            printf("ID     : %d\n", etudiants[i].id);
+            printf("Nom    : %s\n", etudiants[i].nom);
+            printf("Prenom : %s\n", etudiants[i].prenom);
+            printf("Age    : %d\n", etudiants[i].age);
+
+            trouve = 1;
+            break;
+        }
+    }
+
+    if (trouve == 0) {
+        printf("\nAucun etudiant avec cet ID.\n");
+    }
+
+    break;
+}
+
             case 4:
                 printf("Modifier un etudiant\n");
                 break;
