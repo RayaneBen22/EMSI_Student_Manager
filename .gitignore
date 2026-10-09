@@ -1,0 +1,7 @@
+bin/
+obj/
+emsi_manager
+student_manager
+*.o
+*.exe
+.DS_Store
