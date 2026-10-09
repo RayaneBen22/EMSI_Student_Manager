@@ -1,8 +1,18 @@
 
 #include <stdio.h>
+#define MAX_ETUDIANTS 100
+
+struct Etudiant {
+    int id;
+    char nom[50];
+    char prenom[50];
+    int age;
+};
 
 int main(void) {
     int choix;
+    struct Etudiant etudiants[MAX_ETUDIANTS];
+    int nombreEtudiants = 0;
 
     do {
         printf("\n===== EMSI STUDENT MANAGER =====\n");
@@ -21,9 +31,40 @@ int main(void) {
         }
 
         switch (choix) {
-            case 1:
-                printf("Ajouter un etudiant\n");
-                break;
+            
+case 1:
+    if (nombreEtudiants >= MAX_ETUDIANTS) {
+        printf("La liste est pleine !\n");
+        break;
+    }
+
+    struct Etudiant *e = &etudiants[nombreEtudiants];
+
+    printf("\n--- Ajouter un etudiant ---\n");
+
+    printf("ID : ");
+    if (scanf("%d", &e->id) != 1) {
+        printf("ID invalide.\n");
+        return 1;
+    }
+
+    printf("Nom : ");
+    scanf("%49s", e->nom);
+
+    printf("Prenom : ");
+    scanf("%49s", e->prenom);
+
+    printf("Age : ");
+    if (scanf("%d", &e->age) != 1) {
+        printf("Age invalide.\n");
+        return 1;
+    }
+
+    nombreEtudiants++;
+
+    printf("\nEtudiant ajoute avec succes !\n");
+    break;
+
             case 2:
                 printf("Afficher les etudiants\n");
                 break;
