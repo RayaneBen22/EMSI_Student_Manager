@@ -50,7 +50,6 @@ case 1:
 
     printf("Nom : ");
     scanf("%49s", e->nom);
-
     printf("Prenom : ");
     scanf("%49s", e->prenom);
 
@@ -65,9 +64,26 @@ case 1:
     printf("\nEtudiant ajoute avec succes !\n");
     break;
 
-            case 2:
-                printf("Afficher les etudiants\n");
-                break;
+            
+case 2:
+    printf("\n===== LISTE DES ETUDIANTS =====\n");
+
+    if (nombreEtudiants == 0) {
+        printf("Aucun etudiant enregistre.\n");
+    } else {
+        for (int i = 0; i < nombreEtudiants; i++) {
+            printf("\n--- Etudiant %d ---\n", i + 1);
+            printf("ID     : %d\n", etudiants[i].id);
+            printf("Nom    : %s\n", etudiants[i].nom);
+            printf("Prenom : %s\n", etudiants[i].prenom);
+            printf("Age    : %d\n", etudiants[i].age);
+        }
+
+        printf("\nTotal : %d etudiant(s)\n",
+               nombreEtudiants);
+    }
+    break;
+
             case 3:
                 printf("Rechercher un etudiant\n");
                 break;
