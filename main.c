@@ -9,6 +9,27 @@ struct Etudiant {
     int age;
 };
 
+void sauvegarderEtudiants(struct Etudiant etudiants[], int nombreEtudiants) {
+    FILE *fichier = fopen("etudiants.txt", "w");
+
+    if (fichier == NULL) {
+        printf("Erreur lors de l'ouverture du fichier.\n");
+        return;
+    }
+
+    for (int i = 0; i < nombreEtudiants; i++) {
+        fprintf(fichier, "%d %s %s %d\n",
+                etudiants[i].id,
+                etudiants[i].nom,
+                etudiants[i].prenom,
+                etudiants[i].age);
+    }
+
+    fclose(fichier);
+
+    printf("Etudiants sauvegardes avec succes !\n");
+}
+
 int main(void) {
     int choix;
     struct Etudiant etudiants[MAX_ETUDIANTS];
@@ -78,10 +99,15 @@ int main(void) {
                     return 1;
                 }
 
+                
                 nombreEtudiants++;
 
                 printf("\nEtudiant ajoute avec succes !\n");
-                break;
+
+                sauvegarderEtudiants(etudiants, nombreEtudiants);
+
+break;
+
             }
 
             case 2: {
