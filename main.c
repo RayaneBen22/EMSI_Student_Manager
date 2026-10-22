@@ -30,10 +30,35 @@ void sauvegarderEtudiants(struct Etudiant etudiants[], int nombreEtudiants) {
     printf("Etudiants sauvegardes avec succes !\n");
 }
 
+void chargerEtudiants(struct Etudiant etudiants[], int *nombreEtudiants) {
+    FILE *fichier = fopen("etudiants.txt", "r");
+
+    if (fichier == NULL) {
+        printf("Aucune sauvegarde trouvee.\n");
+        return;
+    }
+
+    while (*nombreEtudiants < MAX_ETUDIANTS &&
+           fscanf(fichier, "%d %49s %49s %d",
+                  &etudiants[*nombreEtudiants].id,
+                  etudiants[*nombreEtudiants].nom,
+                  etudiants[*nombreEtudiants].prenom,
+                  &etudiants[*nombreEtudiants].age) == 4) {
+
+        (*nombreEtudiants)++;
+    }
+
+    fclose(fichier);
+
+    printf("%d etudiant(s) charge(s) avec succes !\n", *nombreEtudiants);
+}
+
+
 int main(void) {
     int choix;
     struct Etudiant etudiants[MAX_ETUDIANTS];
     int nombreEtudiants = 0;
+    chargerEtudiants(etudiants, &nombreEtudiants);
 
     do {
         printf("\n===== EMSI STUDENT MANAGER =====\n");
